@@ -5444,7 +5444,20 @@ function right_lefte(eve){
       let e = document.querySelector("#MMOORPG")
       e.scrollLeft += 650
 
+    } else if(get_value_of_eve === "2"){
+
+      console.log(turns_for_pictures)
+      let e = document.querySelector("#Strategyy")
+      e.scrollLeft += 650
+
+    }else if(get_value_of_eve === "3"){
+
+      console.log(turns_for_pictures)
+      let e = document.querySelector("#Top10Game")
+      e.scrollLeft += 650
+
     }
+
 
 
   }
@@ -5463,7 +5476,21 @@ function right_lefte(eve){
       let e = document.querySelector("#MMOORPG")
       e.scrollLeft -= 650
 
+    } else if(get_value_of_eve === "2"){
+
+      console.log(turns_for_pictures)
+      let e = document.querySelector("#Strategyy")
+      e.scrollLeft -= 650
+
+    }else if(get_value_of_eve === "3"){
+
+      console.log(turns_for_pictures)
+      let e = document.querySelector("#Top10Game")
+      e.scrollLeft -= 650
+
     }
+
+
 
 
   }
@@ -5516,6 +5543,105 @@ for (MMORPG of here_it_comes){
 
 }
 
+//show games strategy
+let all_strat_taken = []
+let take_link_of_strat = []
+let strat_pos = 0
+for (strat of here_it_comes){
+
+  if (strat.genre === "Strategy"){
+    console.log(strat)
+    take_link_of_strat.push(strat.game_url)
+
+
+    let make_img = document.createElement("img")
+    let make_src = make_img.setAttribute("src", strat.thumbnail)
+    let make_src_value = make_img.setAttribute("valueStrategyy", strat_pos)
+    let make_src_onclick = make_img.setAttribute("onclick", "redirect_to_game(this)")
+    let take_allTopics = document.getElementById("Strategyy")
+    console.log(all_strat_taken)
+
+    take_allTopics.appendChild(make_img)
+    strat_pos++
+    all_strat_taken.push(strat.thumbnail)
+
+
+  }
+  else{
+
+    
+    console.log("no")
+
+    
+
+        //let make_img = document.createElement("img")
+    //let make_src = make_img.setAttribute("src", obj.thumbnail)
+
+    //take_body.appendChild(make_p)
+   // take_body.appendChild(make_img)
+
+  }
+
+  console.log(take_link_of_strat[0])
+
+
+}
+
+//show top 10 games
+let all_top10_taken = []
+let take_link_of_top10 = []
+let top10_pos = 0
+let si = 10
+
+for (top10 of here_it_comes){
+
+  if (top10.id < 100 && top10_pos < 10){
+    console.log(top10.id)
+    take_link_of_top10.push(top10.game_url)
+
+    let make_rating_text = document.createElement("h1")
+    let make_rate_inner = make_rating_text.innerHTML = si
+    console.log(make_rate_inner)
+    let make_img = document.createElement("img")
+    let make_src = make_img.setAttribute("src", top10.thumbnail)
+    let make_src_value = make_img.setAttribute("valuetop10", top10_pos)
+    let make_src_onclick = make_img.setAttribute("onclick", "redirect_to_game(this)")
+    let take_allTopics = document.getElementById("Top10Game")
+    console.log(all_top10_taken)
+
+    si--
+
+    take_allTopics.appendChild(make_img)
+    take_allTopics.appendChild(make_rating_text)
+    top10_pos++
+    all_top10_taken.push(top10.thumbnail)
+
+
+  }
+  else{
+
+    
+    console.log("no")
+
+    
+
+        //let make_img = document.createElement("img")
+    //let make_src = make_img.setAttribute("src", obj.thumbnail)
+
+    //take_body.appendChild(make_p)
+   // take_body.appendChild(make_img)
+
+  }
+
+  console.log(take_link_of_strat[0])
+
+
+}
+
+
+
+
+
 function redirect_to_game(this_selected){
 
   console.log(this_selected)
@@ -5536,6 +5662,12 @@ function redirect_to_game(this_selected){
 
     let get_value = this_selected.getAttribute("valueshooter")
     window.open(take_link_of_game[get_value], '_blank')
+  } else if (nearest_topic.getAttribute("id") === "Strategyy") {
+
+
+    let get_value = this_selected.getAttribute("valueStrategyy")
+    window.open(take_link_of_strat[get_value], '_blank')
+
   }
 
 
